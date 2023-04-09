@@ -1,4 +1,8 @@
 [] Obsidian + Vim-wiki + SIM + Zathura pdf
+[] Configure ZMK for Adv 360 pro KB
+[] Labelling group of tabs
+[] Move to lazy loading and rewrite nvim config
+[] Enc docs
 [] Install greasemonkey/tampermonkey scripts
 [] Install perf.anno nvim plugin
   - Have to hardcode the bgcolor in setup functions, will work after.
@@ -15,3 +19,4 @@
   - https://github.com/pwmt/zathura
   - https://github.com/lervag/vimtex
 [] Isengard desktop app
+[] Learn about spellcheck in vim
