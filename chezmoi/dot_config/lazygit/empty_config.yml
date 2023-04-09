@@ -1,0 +1,12 @@
+os:
+  editCommand: ''
+git:
+  paging:
+    colorArg: never
+    pager: delta --dark --paging=never
+gui:
+  theme:
+    selectedLineBgColor:
+      - underline
+    selectedRangeBgColor:
+      - underline
