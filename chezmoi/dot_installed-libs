@@ -17,3 +17,11 @@ PyPDF2
 PyCryptodome
 autopep8
 pip install 'pyHanko[pkcs11,image-support,opentype,xmp]'
+pip3 install pynvim --upgrade
+
+# Shell
+zsh-autosuggestions git
+wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.sh -0 /usr/local/share/zsh/site-functions/_tmuxinator
+
+# Tools
+ncdu

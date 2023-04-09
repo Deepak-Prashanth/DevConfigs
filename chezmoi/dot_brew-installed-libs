@@ -6,20 +6,25 @@ brotli
 c-ares
 ca-certificates
 ccls
+chezmoi
 clang-format
 cmake
 cscope
 ctags
 dbus
 double-conversion
+fd
+fx
 fzf
 gdb
 gdbm
 gettext
 global
 gmp
+hyperfine
 icu4c
 jansson
+jesseduffield/lazygit/lazygit
 libevent
 libnghttp2
 libsodium
@@ -53,6 +58,7 @@ six
 sqlite
 tcl-tk
 tmux
+tmuxinator
 tree-sitter
 unibilium
 universal-ctags
@@ -61,6 +67,8 @@ xz
 yadm
 z3
 zsh
+zsh-vi-mode
 zstd
+zlib-ng
 /* For node, yarn */
 nvm

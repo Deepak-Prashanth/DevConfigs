@@ -1,3 +1,4 @@
+[] Remaining config migration = vimrc, gdbinit, bashrc
 [] Obsidian + Vim-wiki + SIM + Zathura pdf
 [] Configure ZMK for Adv 360 pro KB
 [] Update skhdrc after configuring ZMK
