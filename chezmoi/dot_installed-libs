@@ -1,0 +1,19 @@
+# NVM
+nvm install --lts
+
+# Node Package Manager
+npm install --save pdf-lib
+npm install --global yarn
+/* npm install -g mintable # For budget app */
+npm install chart.js
+npm install apexcharts --save
+npm i chartnew.js
+npm i sorttable
+npm i @master/css
+
+# Python
+https://github.com/pikepdf/pikepdf
+PyPDF2
+PyCryptodome
+autopep8
+pip install 'pyHanko[pkcs11,image-support,opentype,xmp]'

@@ -1,0 +1,442 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Basic settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set incsearch ignorecase hlsearch nowrapscan " search settings
+set number " relativenumber " show line numbers nicely
+set autowrite " auto save for :make :next ... commands
+set mouse=a   " full mouse support, press alt to disable it temporarily
+set ts=2 sw=2 sts=2 expandtab
+set cursorline
+autocmd FileType c,cpp,python,sh setlocal colorcolumn=81
+" your settings here
+" Add ~/.config/nvim/init.vim
+ " set runtimepath^=~/.vim runtimepath+=~/.vim/after
+ " let &packpath=&runtimepath
+ " source ~/.vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto install Plug
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+function CheckInstallPlug(path)
+  let url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  if empty(glob(a:path))
+    execute "!curl -fLo " . a:path . " --create-dirs " . url
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
+endfunction
+if has('nvim')
+  call CheckInstallPlug('~/.local/share/nvim/site/autoload/plug.vim')
+else
+  call CheckInstallPlug('~/.vim/autoload/plug.vim')
+endif
+call plug#begin('~/.vim/plugged')
+Plug 'farmergreg/vim-lastplace' " Remember last edit position
+Plug 'tpope/vim-sensible'   " Common basic settings
+Plug 'tpope/vim-rsi'        " Readline key bindings
+Plug 'jiangmiao/auto-pairs' " Autocomplete brackets
+Plug 'scrooloose/nerdtree'  " Nerdtree
+Plug 'preservim/tagbar'     " Displaying tags in code file
+Plug 'junegunn/fzf'         " Fuzzy finder
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
+Plug 'tpope/vim-commentary' " Commenting shortcuts
+Plug 'tpope/vim-fugitive'   " Vim Git integration
+Plug 'morhetz/gruvbox'      " To make coc warning msgs look better
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'editorconfig/editorconfig-vim'
+" Plug 'jsfaint/gen_tags.vim'  "gnu global(aka gtags), backup for "ccls"
+Plug 'tpope/vim-dispatch'   " Asynchronous build and test dispatcher
+Plug 'octol/vim-cpp-enhanced-highlight' " Better cpp highlighting
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} Code highlighting
+Plug 'nathanaelkane/vim-indent-guides'  " Better indent guides
+Plug 'dense-analysis/ale'   " Linting
+Plug 'folke/which-key.nvim' " Vim Script https://github.com/folke/which-key.nvim
+Plug 'lewis6991/gitsigns.nvim' " Git integration for buffers
+                               " https://github.com/lewis6991/gitsigns.nvim
+Plug 'kkoomen/vim-doge' , { 'do': { -> doge#install() } }
+                            " Documentation: Open Vim and run :call doge#install()
+Plug 'skywind3000/asyncrun.vim' " Running shell commands via AsyncRun
+Plug 'wellle/context.vim'   " Context while code browsing
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'rust-lang/rust.vim'   " Rust language server
+Plug 'liuchengxu/vim-clap'  " 👏 Modern performant fuzzy picker
+Plug 'markonm/traces.vim'   " https://github.com/markonm/traces.vim
+Plug 'stefandtw/quickfix-reflector.vim' " https://github.com/stefandtw/quickfix-reflector.vim
+Plug 'luochen1990/rainbow' " https://github.com/luochen1990/rainbow
+function! UpdateRemotePlugins(...)
+  " Needed to refresh runtime files
+  let &rtp=&rtp
+  UpdateRemotePlugins
+endfunction
+Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+" To use Python remote plugin features in Vim, can be skipped
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'andymass/vim-matchup' " https://github.com/andymass/vim-matchup
+Plug 'unblevable/quick-scope' " https://github.com/unblevable/quick-scope
+Plug 'itchyny/vim-cursorword' " https://github.com/itchyny/vim-cursorword
+Plug 'preservim/nerdcommenter'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'mhinz/vim-signify'
+Plug 'blueyed/vim-diminactive'
+Plug 'ntpeters/vim-better-whitespace' " Highlights trailing white spaces with RED color
+Plug 'mhinz/vim-startify' " Fancy start screen
+Plug 'mbbill/undotree' " Undo changes tree-based visualizer
+
+" -----------------
+"  TRY THESE LATER
+" -----------------
+" TODO: https://github.com/easymotion/vim-easymotion
+" Plug 'easymotion/vim-easymotion'
+" Plug 'simrat39/symbols-outline.nvim'
+" Plug 'liuchengxu/vista.vim'
+" https://github.com/vim-utils/vim-man
+" https://github.com/ggandor/lightspeed.nvim
+" https://github.com/justinmk/vim-sneak
+" https://github.com/junegunn/vim-easy-align
+" https://github.com/andmarti1424/sc-im
+" https://github.com/junegunn/myvim
+" https://github.com/amoffat/snake
+" https://github.com/vim-ctrlspace/vim-ctrlspace
+" https://github.com/jasonrudolph/keyboard
+" -------------------
+" Tried but not used
+" -------------------
+" Plug 'ryanoasis/vim-devicons' " Filetype glyphs for vim
+" Plug 'gauteh/vim-cppman' " CPP Documentation
+" Plug 'skywind3000/vim-quickui' " For Quick UI - https://github.com/skywind3000/vim-quickui
+" https://github.com/camspiers/lens.vim
+" Plug 'camspiers/lens.vim'
+" --------------------------
+" Other plugins to check out
+" https://github.com/tweekmonster/startuptime.vim
+" https://github.com/wakatime/vim-wakatime
+" https://github.com/skywind3000/asynctasks.vim
+
+call plug#end() " required
+
+let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-clangd', 'coc-cmake', 'coc-db', 'coc-sql', 'coc-pyright', 'coc-yank']
+
+" Fugitive short cuts
+map <C-g>b :Git blame<CR>
+map <C-g>r :Gclog --name-only<CR>
+
+" Git Signs
+lua << EOF
+require('gitsigns').setup{
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    interval = 1000,
+    follow_files = true
+  },
+  attach_to_untracked = true,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 500,
+    ignore_whitespace = false,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000,
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
+  on_attach = function(bufnr)
+    local function map(mode, lhs, rhs, opts)
+        opts = vim.tbl_extend('force', {noremap = true, silent = true}, opts or {})
+        vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true})
+    map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
+
+    -- Actions
+    map('n', '<leader>Gs', ':Gitsigns stage_hunk<CR>')
+    map('v', '<leader>Gs', ':Gitsigns stage_hunk<CR>')
+    map('n', '<leader>Gr', ':Gitsigns reset_hunk<CR>')
+    map('v', '<leader>Gr', ':Gitsigns reset_hunk<CR>')
+    map('n', '<leader>GS', '<cmd>Gitsigns stage_buffer<CR>')
+    map('n', '<leader>Gu', '<cmd>Gitsigns undo_stage_hunk<CR>')
+    map('n', '<leader>GR', '<cmd>Gitsigns reset_buffer<CR>')
+    map('n', '<leader>Gp', '<cmd>Gitsigns preview_hunk<CR>')
+    map('n', '<leader>Gb', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
+    map('n', '<leader>GB', ':Gitsigns blame_line<CR>')
+    map('n', '<leader>Gtb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
+    map('n', '<leader>Gd', '<cmd>Gitsigns diffthis<CR>')
+    map('n', '<leader>GD', '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+    map('n', '<leader>Gtd', '<cmd>Gitsigns toggle_deleted<CR>')
+
+    -- Text object
+    map('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end
+
+}
+
+-- " Which key config
+  require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
+
+" --> auto pairs
+let g:AutoPairsShortcutToggle = ''
+
+" --> Nerdtree
+map <leader>e :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<CR>
+map <leader>[ :NERDTreeFind<CR>
+map <leader>] :NERDTreeFind<CR>
+
+" --> tagbar
+map <silent> <leader>t :let g:tagbar_position = 'topleft vertical' \| Tagbar<CR>
+map <silent> <leader>T :let g:tagbar_position = 'botright vertical' \| Tagbar<CR>
+
+" --> fzf: requires "fzf" and "ripgrep" packages
+"remap Ctrl-j for finding files run Fzf ":Files" command
+nnoremap <C-j> :Files<CR>
+
+" --> commentary
+autocmd FileType cpp setlocal commentstring=//\ %s
+
+" --> coc autocompletion, requires "ccls"
+let g:coc_config_home='~/.vim'
+let g:coc_data_home='~/.vim'
+source ~/.vim/coc-settings.vimrc
+" other configs are in ~/.vim/coc-settings.json
+
+" --> gruvbox theme, make coc error messages look better
+set background=dark
+" colorscheme gruvbox
+colorscheme tokyonight-moon
+let g:lightline = {'colorscheme': 'tokyonight-moon'}
+
+" --> airline
+let g:airline_powerline_fonts = 0 " or to use https://github.com/powerline/fonts
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" --> gen_tags
+let g:gen_tags#root_path = "//Users//deprasannan//Desktop//Dev//cpp//"
+let g:gen_tags#gtags_default_map = 1    " ctrl+\ c|d|e|f|g|i|s|t
+set cscopequickfix=s-,c-,d-,i-,t-,e-    " use quickfix window
+
+" --> Indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+
+" --> ALE plugin for lint errors
+"  https://github.com/dense-analysis/ale#standard-installation
+" Only run linters named in ale_linters settings.
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+let g:ale_disable_lsp = 1
+let g:ale_linters_explicit = 1
+let g:ale_use_global_executable = 1
+let g:ale_linters = {'cpp': ['clang']}
+let b:ale_fixers = {'cpp': ['clangtidy']}
+"let g:ale_cpp_ccls_init_options = {
+"\   'cache': {
+"\       'directory': '/tmp/ccls/cache'
+"\   }
+"\ }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Code compiling, viewing, searching
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --> grep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+" Short keys for grep searching
+nmap <leader>g :grep <C-R>=expand("<cword>")<CR>
+nmap <leader>s :grep <C-R>=expand("<cword>")<CR> %
+" <C-e>
+
+" "gf" command (goto file) search path
+set path+=src,build,src/pg/src/include,**
+
+" --> make
+autocmd BufRead ~/padb/** set makeprg=$XEN_ROOT/make-build
+
+" --> quickfix window settings
+" Move the quickfix window to the bottom of the window layout: https://stackoverflow.com/a/6728687
+autocmd FileType qf wincmd J
+" Open quickfix window automatically
+" from https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+nmap <C-n> :cnext <CR>
+nmap <C-p> :cprevious <CR>
+nnoremap <silent> <C-L> :ccl \| noh<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+
+" Custom Functions
+function! CustomCloseHiddenBuffers()
+  let i = 0
+  let n = bufnr('$')
+  while i < n
+    let i = i + 1
+    if bufloaded(i) && bufwinnr(i) < 0
+      exe 'bd ' . i
+    endif
+  endwhile
+endfun
+
+" ALE LinterStatus
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+        \   '%d⨉ %d⚠ ',
+        \   all_non_errors,
+        \   all_errors
+        \)
+endfunction
+
+" set statusline+=%=
+" set statusline+=\ %{LinterStatus()}
+
+" GTAGS CSCOPE Navigation
+" -- To clear cache - rm -rf ~/.cache/tags_dir/*
+" First, you need to update cscope database. :!cscope -Rbq
+" Then, reinit the database from vim. with :cs reset
+" Ctrl+\ c    Find functions calling this function
+" Ctrl+\ d    Find functions called by this function
+" Ctrl+\ e    Find this egrep pattern
+" Ctrl+\ f    Find this file
+" Ctrl+\ g    Find this definition
+" Ctrl+\ i    Find files #including this file
+" Ctrl+\ s    Find this C symbol
+" Ctrl+\ t    Find this text string
+
+" AsyncRun plugin
+let g:asyncrun_open = 8
+
+" Vim-context
+" :ContextEnable/ :ContextDisable
+let g:context_enabled = 1
+
+" Quickfix configs
+" If you want to load the quickfix item into the previously used window.
+set switchbuf+=uselast
+set completeopt-=preview
+
+" System clipboard
+set clipboard+=unnamedplus
+
+" Deoplete semshi issue
+call deoplete#custom#option('auto_complete_delay', 100)
+
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+" Map the leader key + q to toggle quick-scope's highlighting in normal/visual mode.
+" Note that you must use nmap/xmap instead of their non-recursive versions (nnoremap/xnoremap).
+nmap <leader>qq <plug>(QuickScopeToggle)
+xmap <leader>qq <plug>(QuickScopeToggle)
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Vim-matchup config
+let g:loaded_matchit = 1
+
+" Default keys
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'next_key': '<Tab>',
+      \ 'previous_key': '<S-Tab>',
+      \ 'accept_key': '<Down>',
+      \ 'reject_key': '<Up>',
+      \ })
+
+call wilder#set_option('pipeline', [
+      \   wilder#branch(
+      \     wilder#cmdline_pipeline({
+      \       'fuzzy': 1,
+      \       'set_pcre2_pattern': 1,
+      \     }),
+      \     wilder#python_search_pipeline({
+      \       'pattern': 'fuzzy',
+      \     }),
+      \   ),
+      \ ])
+
+let s:highlighters = [
+        \ wilder#pcre2_highlighter(),
+        \ wilder#basic_highlighter(),
+        \ ]
+
+call wilder#set_option('renderer', wilder#renderer_mux({
+      \ ':': wilder#popupmenu_renderer({
+      \   'highlighter': wilder#basic_highlighter(),
+      \ }),
+      \ '/': wilder#wildmenu_renderer({
+      \   'highlighter': wilder#basic_highlighter(),
+      \ }),
+      \ }))
+
+" 'border'            : 'single', 'double', 'rounded' or 'solid'
+"                     : can also be a list of 8 characters,
+"                     : see :h wilder#popupmenu_border_theme() for more details
+" 'highlights.border' : highlight to use for the border`
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      \ 'highlights': {
+      \   'border': 'Normal',
+      \ },
+      \ 'border': 'rounded',
+      \ })))
+
+" wilder#popupmenu_border_theme() is optional.
+" 'min_height' : sets the minimum height of the popupmenu
+"              : can also be a number
+" 'max_height' : set to the same as 'min_height' to set the popupmenu to a fixed height
+" 'reverse'    : if 1, shows the candidates from bottom to top
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'min_width': '100%',
+      \ 'min_height': '50%',
+      \ 'reverse': 0,
+      \ })))
+
+" 'border'            : 'single', 'double', 'rounded' or 'solid'
+"                     : can also be a list of 8 characters,
+"                     : see :h wilder#popupmenu_palette_theme() for more details
+" 'max_height'        : max height of the palette
+" 'min_height'        : set to the same as 'max_height' for a fixed height window
+" 'prompt_position'   : 'top' or 'bottom' to set the location of the prompt
+" 'reverse'           : set to 1 to reverse the order of the list
+"                     : use in combination with 'prompt_position'
+" call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_palette_theme({
+"       \ 'border': 'rounded',
+"       \ 'max_height': '75%',
+"       \ 'min_height': 0,
+"       \ 'prompt_position': 'bottom',
+"       \ 'reverse': 1,
+"       \ })))
