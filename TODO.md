@@ -1,6 +1,7 @@
 [] Obsidian + Vim-wiki + SIM + Zathura pdf
 [] Configure ZMK for Adv 360 pro KB
-[] Labelling group of tabs
+[] Update skhdrc after configuring ZMK
+[] Labelling group of tabs for Firefox
 [] Move to lazy loading and rewrite nvim config
 [] Enc docs
 [] Install greasemonkey/tampermonkey scripts
