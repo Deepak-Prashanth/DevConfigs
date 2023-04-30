@@ -735,3 +735,7 @@ let g:diminactive_use_colorcolumn = 0
 :call ERLN()
 syntax enable
 filetype plugin indent on
+
+set spelllang=en_us
+set spell
+

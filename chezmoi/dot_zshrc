@@ -183,7 +183,8 @@ alias jump_code_dir='cd ~/Desktop/Dev/'
 
 # BAT config
 # https://github.com/sharkdp/bat#installation
-export BAT_PAGER="less -RF"
+export BAT_PAGER=ov #"less -RF"
+export PAGER=ov
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 alias bathelp='bat --plain --language=help'
 

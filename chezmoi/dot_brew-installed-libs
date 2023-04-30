@@ -72,3 +72,6 @@ zstd
 zlib-ng
 /* For node, yarn */
 nvm
+git-delta
+noborus/tap/ov
+
