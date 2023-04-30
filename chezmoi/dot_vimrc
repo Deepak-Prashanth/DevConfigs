@@ -733,7 +733,8 @@ hi ColorColumn guibg=#005532
 " -- Prevent diminactive from using colorcolumn scheme
 let g:diminactive_use_colorcolumn = 0
 :call ERLN()
-syntax enable
+syntax on
+set termguicolors
 filetype plugin indent on
 
 set spelllang=en_us

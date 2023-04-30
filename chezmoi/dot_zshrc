@@ -311,4 +311,5 @@ export FX_THEME=2
 eval $(thefuck --alias)
 echo "Sourced zsh config!"
 export PATH=$HOME/.toolbox/bin:$PATH
-export TERM=alacritty
+# export TERM=alacritty
+export TERM=xterm-256color
