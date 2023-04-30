@@ -103,6 +103,7 @@ Plug 'honza/vim-snippets'
 Plug 'neovim/nvim-lspconfig'
 Plug 't-troebst/perfanno.nvim'
 Plug 'dhananjaylatkar/cscope_maps.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 " function! UpdateRemotePlugins(...)
 "   " Needed to refresh runtime files
