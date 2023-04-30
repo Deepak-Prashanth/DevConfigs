@@ -305,5 +305,6 @@ zvm_after_init_commands+=('[-f ~/.fzf ] && source ~/.fzf')
 export EDITOR=nvim
 export FX_THEME=2
 
+eval $(thefuck --alias
 echo "Sourced zsh config!"
 export PATH=$HOME/.toolbox/bin:$PATH
