@@ -13,6 +13,9 @@ pip install --user libtmux
 ```
 3. Install font for alacritty, some features outlined (here)[]
 ```
+curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info > <alacritty_file>
+sudo tic -xe alacritty,alacritty-direct <alacritty_file>
+
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-fira-mono --cask
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-hack--cask
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-fira-code --cask
