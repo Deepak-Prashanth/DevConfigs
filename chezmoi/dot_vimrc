@@ -30,6 +30,13 @@ if has('nvim')
 else
   call CheckInstallPlug('~/.vim/autoload/plug.vim')
 endif
+
+function! UpdateRemotePlugins(...)
+  " Needed to refresh runtime files
+  let &rtp=&rtp
+  UpdateRemotePlugins
+endfunction
+
 call plug#begin('~/.vim/plugged')
 Plug 'farmergreg/vim-lastplace' " Remember last edit position
 Plug 'tpope/vim-sensible'   " Common basic settings
@@ -49,7 +56,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'jsfaint/gen_tags.vim'  "gnu global(aka gtags), backup for "ccls"
 Plug 'tpope/vim-dispatch'   " Asynchronous build and test dispatcher
 Plug 'octol/vim-cpp-enhanced-highlight' " Better cpp highlighting
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} Code highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Code highlighting
 Plug 'nathanaelkane/vim-indent-guides'  " Better indent guides
 Plug 'dense-analysis/ale'   " Linting
 Plug 'folke/which-key.nvim' " Vim Script https://github.com/folke/which-key.nvim
@@ -59,18 +66,14 @@ Plug 'kkoomen/vim-doge' , { 'do': { -> doge#install() } }
                             " Documentation: Open Vim and run :call doge#install()
 Plug 'skywind3000/asyncrun.vim' " Running shell commands via AsyncRun
 Plug 'wellle/context.vim'   " Context while code browsing
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'rust-lang/rust.vim'   " Rust language server
-Plug 'liuchengxu/vim-clap'  " 👏 Modern performant fuzzy picker
+Plug 'simrat39/rust-tools.nvim'
+" Plug 'liuchengxu/vim-clap'  " 👏 Modern performant fuzzy picker
 Plug 'markonm/traces.vim'   " https://github.com/markonm/traces.vim
 Plug 'stefandtw/quickfix-reflector.vim' " https://github.com/stefandtw/quickfix-reflector.vim
 Plug 'luochen1990/rainbow' " https://github.com/luochen1990/rainbow
-function! UpdateRemotePlugins(...)
-  " Needed to refresh runtime files
-  let &rtp=&rtp
-  UpdateRemotePlugins
-endfunction
 Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
 " To use Python remote plugin features in Vim, can be skipped
 Plug 'roxma/nvim-yarp'
@@ -85,6 +88,27 @@ Plug 'blueyed/vim-diminactive'
 Plug 'ntpeters/vim-better-whitespace' " Highlights trailing white spaces with RED color
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'mbbill/undotree' " Undo changes tree-based visualizer
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'voldikss/vim-floaterm'
+" Plug 'justink/vim-sneak'
+Plug 'godlygeek/tabular'
+Plug 'karb94/neoscroll.nvim'
+Plug 'chentoast/marks.nvim'
+Plug 'tpope/vim-unimpaired'
+Plug 'folke/zen-mode.nvim'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'neovim/nvim-lspconfig'
+Plug 't-troebst/perfanno.nvim'
+Plug 'dhananjaylatkar/cscope_maps.nvim'
+
+" function! UpdateRemotePlugins(...)
+"   " Needed to refresh runtime files
+"   let &rtp=&rtp
+"   UpdateRemotePlugins
+" endfunction
 
 " -----------------
 "  TRY THESE LATER
@@ -118,8 +142,8 @@ Plug 'mbbill/undotree' " Undo changes tree-based visualizer
 
 call plug#end() " required
 
-let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-clangd', 'coc-cmake', 'coc-db', 'coc-sql', 'coc-pyright', 'coc-yank']
-
+let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-cmake', 'coc-db', 'coc-sql', 'coc-pyright', 'coc-yank']
+" coc-clangd
 " Fugitive short cuts
 map <C-g>b :Git blame<CR>
 map <C-g>r :Gclog --name-only<CR>
@@ -280,6 +304,7 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 nmap <leader>g :grep <C-R>=expand("<cword>")<CR>
 nmap <leader>s :grep <C-R>=expand("<cword>")<CR> %
 " <C-e>
+nmap <leader>h :noh<CR>
 
 " "gf" command (goto file) search path
 set path+=src,build,src/pg/src/include,**
@@ -343,29 +368,49 @@ let g:asyncrun_open = 8
 
 " Vim-context
 " :ContextEnable/ :ContextDisable
-let g:context_enabled = 1
+let g:context_enabled = 0
+nnoremap <silent><nowait> <space>x :ContextPeek<CR>
+nnoremap <silent><nowait> [X :ContextDisable<CR>
+nnoremap <silent><nowait> ]X :ContextEnable<CR>
+
+" Zen Mode
+nnoremap <silent><nowait> [Z :ZenMode<CR>
+
+" vim cpp enhanced highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_posix_standard = 1
+
+" Rainbox brackets
+let g:rainbow_active = 1
 
 " Quickfix configs
 " If you want to load the quickfix item into the previously used window.
 set switchbuf+=uselast
+" set completopt=menu
 set completeopt-=preview
 
 " System clipboard
 set clipboard+=unnamedplus
 
 " Deoplete semshi issue
-call deoplete#custom#option('auto_complete_delay', 100)
+" call deoplete#custom#option('auto_complete_delay', 100)
 
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " Map the leader key + q to toggle quick-scope's highlighting in normal/visual mode.
 " Note that you must use nmap/xmap instead of their non-recursive versions (nnoremap/xnoremap).
-nmap <leader>qq <plug>(QuickScopeToggle)
-xmap <leader>qq <plug>(QuickScopeToggle)
+" nmap <leader>qq <plug>(QuickScopeToggle)
+" xmap <leader>qq <plug>(QuickScopeToggle)
+nnoremap <silent><nowait> ]S :QuickScopeToggle<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Vim-matchup config
 let g:loaded_matchit = 1
+
+" Lazygit
+command! Lazygit FloattermNew --width=0.9 --height=0.9 lazygit
+map <C-g>l :Lazygit<CR>
 
 " Default keys
 call wilder#setup({
@@ -440,3 +485,234 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_bo
 "       \ 'prompt_position': 'bottom',
 "       \ 'reverse': 1,
 "       \ })))
+
+" Smooth Scrolling
+lua << EOF
+require('neoscroll').setup({
+    -- All these keys will be mapped to their corresponding default scrolling animation
+    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+    hide_cursor = true,          -- Hide cursor while scrolling
+    stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+    respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    easing_function = nil,       -- Default easing function
+    pre_hook = nil,              -- Function to run before the scrolling animation starts
+    post_hook = nil,             -- Function to run after the scrolling animation ends
+    performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+})
+EOF
+
+" PerfAnno
+lua << EOF
+require("perfanno").setup {
+    -- List of highlights that will be used to highlight hot lines (or nil to disable highlighting)
+    line_highlights = nil,
+    -- Highlight used for virtual text annotations (or nil to disable virtual text)
+    vt_highlight = nil,
+
+    -- Annotation formats that can be cycled between via :PerfCycleFormat
+    --   "percent" controls whether percentages or absolute counts should be displayed
+    --   "format" is the format string that will be used to display counts / percentages
+    --   "minimum" is the minimum value below which lines will not be annotated
+    -- Note: this also controls what shows up in the telescope finders
+    formats = {
+        {percent = true, format = "%.2f%%", minimum = 0.5},
+        {percent = false, format = "%d", minimum = 1}
+    },
+
+    -- Automatically annotate files after :PerfLoadFlat and :PerfLoadCallGraph
+    annotate_after_load = true,
+    -- Automatically annotate newly opened buffers if information is available
+    annotate_on_open = true,
+
+    -- Options for telescope-based hottest line finders
+    telescope = {
+        -- Enable if possible, otherwise the plugin will fall back to vim.ui.select
+        enabled = pcall(require, "telescope"),
+        -- Annotate inside of the preview window
+        annotate = true,
+    },
+
+    -- Node type patterns used to find the function that surrounds the cursor
+    ts_function_patterns = {
+        -- These should work for most languages (at least those used with perf)
+        default = {
+            "function",
+            "method",
+        },
+        -- Otherwise you can add patterns for specific languages like:
+        -- weirdlang = {
+        --     "weirdfunc",
+        -- }
+    }
+}
+
+local telescope = require("telescope")
+local actions = telescope.extensions.perfanno.actions
+telescope.setup {
+    extensions = {
+        perfanno = {
+            -- Special mappings in the telescope finders
+            mappings = {
+                ["i"] = {
+                    -- Find hottest callers of selected entry
+                    ["<C-h>"] = actions.hottest_callers,
+                    -- Find hottest callees of selected entry
+                    ["<C-l>"] = actions.hottest_callees,
+                },
+
+                ["n"] = {
+                    ["gu"] = actions.hottest_callers,
+                    ["gd"] = actions.hottest_callees,
+                }
+            }
+        }
+    }
+}
+
+local perfanno = require("perfanno")
+local util = require("perfanno.util")
+
+-- local bgcolor = vim.fn.synIDattr(vim.fn.hlID("Normal"), "bg", "gui")
+local bgcolor = "#01BB01"
+
+perfanno.setup {
+    -- Creates a 10-step RGB color gradient beween bgcolor and "#CC3300"
+    line_highlights = util.make_bg_highlights(bgcolor, "#CC3311", 10),
+    vt_highlight = util.make_fg_highlight("#CC3311"),
+}
+
+local keymap = vim.api.nvim_set_keymap
+local opts = {noremap = true, silent = true}
+
+keymap("n", "<LEADER>plf", ":PerfLoadFlat<CR>", opts)
+keymap("n", "<LEADER>plg", ":PerfLoadCallGraph<CR>", opts)
+keymap("n", "<LEADER>plo", ":PerfLoadFlameGraph<CR>", opts)
+
+keymap("n", "<LEADER>pe", ":PerfPickEvent<CR>", opts)
+
+keymap("n", "<LEADER>pa", ":PerfAnnotate<CR>", opts)
+keymap("n", "<LEADER>pf", ":PerfAnnotateFunction<CR>", opts)
+keymap("v", "<LEADER>pa", ":PerfAnnotateSelection<CR>", opts)
+
+keymap("n", "<LEADER>pt", ":PerfToggleAnnotations<CR>", opts)
+
+keymap("n", "<LEADER>ph", ":PerfHottestLines<CR>", opts)
+keymap("n", "<LEADER>ps", ":PerfHottestSymbols<CR>", opts)
+keymap("n", "<LEADER>pc", ":PerfHottestCallersFunction<CR>", opts)
+keymap("v", "<LEADER>pc", ":PerfHottestCallersSelection<CR>", opts)
+
+EOF
+
+lua << EOF
+require'marks'.setup {
+  -- whether to map keybinds or not. default true
+  default_mappings = true,
+  -- which builtin marks to show. default {}
+  builtin_marks = { ".", "<", ">", "^" },
+  -- whether movements cycle back to the beginning/end of buffer. default true
+  cyclic = true,
+  -- whether the shada file is updated after modifying uppercase marks. default false
+  force_write_shada = false,
+  -- how often (in ms) to redraw signs/recompute mark positions.
+  -- higher values will have better performance but may cause visual lag,
+  -- while lower values may cause performance penalties. default 150.
+  refresh_interval = 250,
+  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+  -- marks, and bookmarks.
+  -- can be either a table with all/none of the keys, or a single number, in which case
+  -- the priority applies to all marks.
+  -- default 10.
+  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  -- disables mark tracking for specific filetypes. default {}
+  excluded_filetypes = {},
+  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+  -- default virt_text is "".
+  bookmark_0 = {
+    sign = "⚑",
+    virt_text = "hello world",
+    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+    -- defaults to false.
+    annotate = false,
+  },
+  mappings = {}
+}
+EOF
+
+" Helper
+fun! ERLN()
+  :set number relativenumber
+  :set nu rnu
+  :set signcolumn=yes
+endfun
+
+fun! DRLN()
+  :set nonumber norelativenumber
+  :set nornu
+  :set signcolumn=yes
+endfun
+
+function! CustomCloseHiddenBuffers()
+  let i = 0
+  let n = bufnr('$')
+  while i < n
+    let i = i + 1
+    if bufloaded(i) && bufwinnr(1) < 0
+      exe 'bd!' . i
+    endif
+  endwhile
+endfunction
+
+function! MakeSession()
+  set sessionoptions=buffers, tabpages
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p' b:sessiondir
+    redraw!
+  endif
+  let b:filename = b.sessiondir . '/session.vim'
+  exe "mksession! " . b:filename
+endfunction
+
+function! LoadSession()
+  let b:sessiondir = $HOME "/.vim/sessions" . getcwd()
+  let b:sessionfile = b:sessiondir "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe 'source ' bisessionfile
+  else
+    echo "No session loaded."
+  endif
+endfunction
+
+command! -nargs=0 MakeSession call MakeSession()
+command! -nargs=0 LoadSession call LoadSession()
+command! -nargs=0 CustomCloseHiddenBuffers call CustomCloseHiddenBuffers()
+command! DeleteMarks silent! delm! | delm A-Z0-9
+
+command! -nargs=0 EnableRelativeLineNumbers call ERLN()
+command! -nargs=0 DisableRelativeLineNumbers call DRLN()
+nnoremap ]r :EnableRelativeLineNumbers<CR>
+nnoremap [r :DisableRelativeLineNumbers<CR>
+nnoremap <C-d> <C-d>zz<CR>
+nnoremap <C-u> <C-u>zz<CR>
+map <leader>m :MarksToggleSigns<CR>
+
+" -- Make vim faster
+set timeoutlen=1000
+set ttimeoutlen=0
+
+" -- Python formatting
+au FileType python setlocal formatprg=autopep8\ -
+
+set signcolumn=yes
+hi CursorLineNr guifg=#00FF32
+hi CursorLine guibg=#002232
+hi ColorColumn guibg=#005532
+" -- Prevent diminactive from using colorcolumn scheme
+let g:diminactive_use_colorcolumn = 0
+:call ERLN()
+syntax enable
+filetype plugin indent on

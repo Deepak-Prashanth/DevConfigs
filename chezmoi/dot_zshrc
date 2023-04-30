@@ -131,12 +131,8 @@ export MYVIMRC=~/.vimrc
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 DISABLE_AUTO_UPDATE="true"
-plugins=(git fzf)
-# (vi-mode zsh-interactive-cd zsh-autosuggestions thefuck )aws)
-
-VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-VI_MODE_SET_CURSOR=true
-MODE_INDICATOR="%F{white}+%f"
+plugins=(git fzf thefuck)
+# (zsh-autosuggestions thefuck aws)
 source $ZSH/oh-my-zsh.sh
 
 # Load config files
@@ -184,7 +180,6 @@ alias jump_code_dir='cd ~/Desktop/Dev/'
 #       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # https://github.com/junegunn/fzf#preview-window
-# TODO: fzf
 
 # BAT config
 # https://github.com/sharkdp/bat#installation
@@ -280,14 +275,8 @@ precommit_on_list() {
   done
 }
 
-function stop_on_spin() {
-  rm -f /tmp/spinner
-  while [! -f /tmp/spinner ] && kill -s 0 $1; do sleep 1; done
-  while [-n "$2" ] && ! grep -q "$2" /tmp/spinner && kill -s 0 $1; do sleep 1; done
-  kill -TSTP $1
-  cat /tmp/spinner
-  rm /tmp/spinner
-}
+# pip3 install pynvim --upgrade
+# https://yadm.io/docs/getting_started#
 
 # zsh-vi-mode
 source $(brew  --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -299,20 +288,19 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 # bindkey '^r' history-incremental-search-backward
 bindkey '^r' fzf-history-widget
+zle
+zle -R
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+    INS_PROMPT="%{$fg_bold[green]%} [% INSERT]% %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/$INS_PROMPT} $EPS1"
+    zle reset-prompt
+}
 zle -N zle-line-init
 zle -N zle-keymap-select
-function zvm_after_init(){
-  VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color}"
-  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-  zle reset-prompt
-}
-eval $(thefuck --alias)
 zvm_after_init_commands+=('[-f ~/.fzf ] && source ~/.fzf')
 export EDITOR=nvim
 export FX_THEME=2
-# pip3 install pynvim --upgrade
 
 echo "Sourced zsh config!"
-
-
 export PATH=$HOME/.toolbox/bin:$PATH

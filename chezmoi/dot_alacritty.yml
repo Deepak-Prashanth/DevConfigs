@@ -27,7 +27,7 @@ env:
 
 tabspace: 2
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. Both lines and columns
@@ -126,7 +126,7 @@ scrolling:
   #multiplier: 3
 
 # Font configuration
-#font:
+font:
   # Normal (roman) font face
   normal:
     # Font family
@@ -135,43 +135,44 @@ scrolling:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Fira mono
-
+    family: Iosevka Term
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Extralight Extended
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: Iosevka Term
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Extralight Extended Italic
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
+    family: Iosevka Term
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Light Extended Italic
 
   # Bold italic font face
-  #bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
+    family: Iosevka Term
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+    style: Extended Oblique
 
   # Point size
   #size: 11.0
@@ -783,14 +784,14 @@ key_bindings:
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-  - {key: Left,mods: Command,chars:"\x1bb"} # Cursor - Skip one word left
-  - {key: Right,mods: Command,chars:"\x1bf"} # Cursor - Skip one word right
-  - {key: Left,mods: Command,chars:"\x1bOH"} # Cusror - Goto start of line
-  - {key: Right,mods: Command,chars:"\x1bOF"} # Cursor - Goto end of line
+  - {key: Left,mods: Command,chars: "\x1bb"} # Cursor - Skip one word left
+  - {key: Right,mods: Command,chars: "\x1bf"} # Cursor - Skip one word right
+  - {key: Left,mods: Command,chars: "\x1bOH"} # Cusror - Goto start of line
+  - {key: Right,mods: Command,chars: "\x1bOF"} # Cursor - Goto end of line
   - {key: V, mods: Command, action: Paste}
-  - {key: V, mods: Control, chars: "\x16"}
+  - {key: V, mods: Control, chars:  "\x16"}
   - {key: C, mods: Command, action: Copy}
-  - {key: C, mods: Control, chars: "\x03"}
+  - {key: C, mods: Control, chars:  "\x03"}
   - {key: H, mods: Command, action: Hide}
   - {key: M, mods: Command, action: Minimize}
   - {key: Q, mods: Command, action: Quit}
