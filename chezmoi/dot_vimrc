@@ -247,6 +247,13 @@ map <silent> <leader>T :let g:tagbar_position = 'botright vertical' \| Tagbar<CR
 " --> fzf: requires "fzf" and "ripgrep" packages
 "remap Ctrl-j for finding files run Fzf ":Files" command
 nnoremap <C-j> :Files<CR>
+nnoremap <C-k>t <cmd>Telescope<CR>
+nnoremap <C-k>f <cmd>Telescope find_files<CR>
+nnoremap <C-k>g <cmd>Telescope live_grep<CR>
+nnoremap <C-k>b <cmd>Telescope buffers<CR>
+nnoremap <C-k>h <cmd>Telescope help_tags<CR>
+nnoremap <C-k>r <cmd>Telescope registers<CR>
+nnoremap <C-k>m <cmd>Telescope marks<CR>
 
 " --> commentary
 autocmd FileType cpp setlocal commentstring=//\ %s
