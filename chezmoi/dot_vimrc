@@ -83,6 +83,7 @@ Plug 'unblevable/quick-scope' " https://github.com/unblevable/quick-scope
 Plug 'itchyny/vim-cursorword' " https://github.com/itchyny/vim-cursorword
 Plug 'preservim/nerdcommenter'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhinz/vim-signify'
 Plug 'blueyed/vim-diminactive'
 Plug 'ntpeters/vim-better-whitespace' " Highlights trailing white spaces with RED color
@@ -268,9 +269,10 @@ source ~/.vim/coc-settings.vimrc
 " --> gruvbox theme, make coc error messages look better
 set background=dark
 " colorscheme gruvbox
-colorscheme tokyonight-moon
-let g:lightline = {'colorscheme': 'tokyonight-moon'}
-
+colorscheme tokyonight-night
+" colorscheme catppuccin-frappe
+let g:lightline = {'colorscheme': 'tokyonight-night'}
+" let g:lightline = {'colorscheme': 'catppuccin-frappe'}
 " --> airline
 let g:airline_powerline_fonts = 0 " or to use https://github.com/powerline/fonts
 let g:airline#extensions#tabline#enabled = 1
@@ -495,6 +497,8 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_bo
 "       \ })))
 
 " Smooth Scrolling
+nnoremap <C-d> <C-d>zz<CR>
+nnoremap <C-u> <C-u>zz<CR>
 lua << EOF
 require('neoscroll').setup({
     -- All these keys will be mapped to their corresponding default scrolling animation
@@ -504,7 +508,7 @@ require('neoscroll').setup({
     stop_eof = true,             -- Stop at <EOF> when scrolling downwards
     respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
     cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-    easing_function = nil,       -- Default easing function
+    easing_function = quadratic,       -- Default easing function
     pre_hook = nil,              -- Function to run before the scrolling animation starts
     post_hook = nil,             -- Function to run after the scrolling animation ends
     performance_mode = false,    -- Disable "Performance Mode" on all buffers.
@@ -715,8 +719,6 @@ command! -nargs=0 EnableRelativeLineNumbers call ERLN()
 command! -nargs=0 DisableRelativeLineNumbers call DRLN()
 nnoremap ]r :EnableRelativeLineNumbers<CR>
 nnoremap [r :DisableRelativeLineNumbers<CR>
-nnoremap <C-d> <C-d>zz<CR>
-nnoremap <C-u> <C-u>zz<CR>
 map <leader>m :MarksToggleSigns<CR>
 
 " -- Make vim faster
