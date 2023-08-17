@@ -1,0 +1,2 @@
+gem install jenkins_api_client
+gem install solargraph

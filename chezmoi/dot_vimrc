@@ -41,7 +41,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'farmergreg/vim-lastplace' " Remember last edit position
 Plug 'tpope/vim-sensible'   " Common basic settings
 Plug 'tpope/vim-rsi'        " Readline key bindings
-Plug 'jiangmiao/auto-pairs' " Autocomplete brackets
 Plug 'scrooloose/nerdtree'  " Nerdtree
 Plug 'preservim/tagbar'     " Displaying tags in code file
 Plug 'junegunn/fzf'         " Fuzzy finder
@@ -49,13 +48,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
 Plug 'tpope/vim-commentary' " Commenting shortcuts
 Plug 'tpope/vim-fugitive'   " Vim Git integration
-Plug 'morhetz/gruvbox'      " To make coc warning msgs look better
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'jsfaint/gen_tags.vim'  "gnu global(aka gtags), backup for "ccls"
 Plug 'tpope/vim-dispatch'   " Asynchronous build and test dispatcher
-Plug 'octol/vim-cpp-enhanced-highlight' " Better cpp highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Code highlighting
 Plug 'nathanaelkane/vim-indent-guides'  " Better indent guides
 Plug 'dense-analysis/ale'   " Linting
@@ -65,54 +61,65 @@ Plug 'lewis6991/gitsigns.nvim' " Git integration for buffers
 Plug 'kkoomen/vim-doge' , { 'do': { -> doge#install() } }
                             " Documentation: Open Vim and run :call doge#install()
 Plug 'skywind3000/asyncrun.vim' " Running shell commands via AsyncRun
-Plug 'wellle/context.vim'   " Context while code browsing
-" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'rust-lang/rust.vim'   " Rust language server
 Plug 'simrat39/rust-tools.nvim'
-" Plug 'liuchengxu/vim-clap'  " 👏 Modern performant fuzzy picker
+Plug 'p00f/clangd_extensions.nvim'
 Plug 'markonm/traces.vim'   " https://github.com/markonm/traces.vim
 Plug 'stefandtw/quickfix-reflector.vim' " https://github.com/stefandtw/quickfix-reflector.vim
-Plug 'luochen1990/rainbow' " https://github.com/luochen1990/rainbow
 Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
 " To use Python remote plugin features in Vim, can be skipped
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'andymass/vim-matchup' " https://github.com/andymass/vim-matchup
 Plug 'unblevable/quick-scope' " https://github.com/unblevable/quick-scope
 Plug 'itchyny/vim-cursorword' " https://github.com/itchyny/vim-cursorword
 Plug 'preservim/nerdcommenter'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'mhinz/vim-signify'
-Plug 'blueyed/vim-diminactive'
 Plug 'ntpeters/vim-better-whitespace' " Highlights trailing white spaces with RED color
-Plug 'mhinz/vim-startify' " Fancy start screen
+" Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'mbbill/undotree' " Undo changes tree-based visualizer
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'voldikss/vim-floaterm'
-" Plug 'justink/vim-sneak'
 Plug 'godlygeek/tabular'
 Plug 'karb94/neoscroll.nvim'
 Plug 'chentoast/marks.nvim'
 Plug 'tpope/vim-unimpaired'
 Plug 'folke/zen-mode.nvim'
 Plug 'AndrewRadev/linediff.vim'
+Plug 'rcarriga/nvim-notify' " Notification popups
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neovim/nvim-lspconfig'
 Plug 't-troebst/perfanno.nvim'
 Plug 'dhananjaylatkar/cscope_maps.nvim'
+Plug 'ThePrimeagen/harpoon'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'mrjones2014/nvim-ts-rainbow'
 " Plug 'nvim-treesitter/nvim-treesitter-context'
+" Plug 'justink/vim-sneak'
+" Plug 'andymass/vim-matchup' " https://github.com/andymass/vim-matchup
+" ^^ (Causes slow down on bigger files)
 
 " function! UpdateRemotePlugins(...)
 "   " Needed to refresh runtime files
 "   let &rtp=&rtp
 "   UpdateRemotePlugins
 " endfunction
+
+" Disabled as not needed anymore
+" Plug 'wellle/context.vim'   " Context while code browsing
+" Plug 'mhinz/vim-signify'
+" Plug 'blueyed/vim-diminactive'
+" Plug 'luochen1990/rainbow' " https://github.com/luochen1990/rainbow
+" Plug 'simrat39/inlay-hints.nvim'
+" Plug 'liuchengxu/vim-clap'  " 👏 Modern performant fuzzy picker
+" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'octol/vim-cpp-enhanced-highlight' " Better cpp highlighting
+" Plug 'jsfaint/gen_tags.vim'  "gnu global(aka gtags), backup for "ccls"
+" Plug 'morhetz/gruvbox'      " To make coc warning msgs look better
+" Plug 'jiangmiao/auto-pairs' " Autocomplete brackets
 
 " -----------------
 "  TRY THESE LATER
@@ -265,6 +272,21 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 " Treesitter config
 lua << EOF
 require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the five listed parsers should always be installed)
+  ensure_installed = { "c", "cpp", "python", "rust", "lua", "vim", "vimdoc", "query", "sql", "bash", "make", "yaml", "toml" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -285,20 +307,22 @@ require'nvim-treesitter.configs'.setup {
     -- termcolors = {} -- table of colour name strings
   },
 }
-" require'treesitter-context'.setup{
-"   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-"   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-"   min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-"   line_numbers = true,
-"   multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-"   trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-"   mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
-"   -- Separator between context and content. Should be a single character string, like '-'.
-"   -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-"   separator = nil,
-"   zindex = 20, -- The Z-index of the context window
-" }
+-- require'treesitter-context'.setup {
+--   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+--   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+--   min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+--   line_numbers = true,
+--   multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
+--   trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+--   mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+--   -- Separator between context and content. Should be a single character string, like '-'.
+--   -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+--   separator = nil,
+--   zindex = 20, -- The Z-index of the context window
+--   on_attach = nil,
+-- }
 EOF
+
 " --> Folds
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
@@ -314,11 +338,12 @@ source ~/.vim/coc-settings.vimrc
 " --> gruvbox theme, make coc error messages look better
 set background=dark
 " colorscheme gruvbox
-colorscheme tokyonight-night
-" colorscheme catppuccin-frappe
+" colorscheme tokyonight-night
+" colorscheme catppuccin-mocha
 let g:lightline = {'colorscheme': 'tokyonight-night'}
 " let g:lightline = {'colorscheme': 'catppuccin-frappe'}
 " --> airline
+let g:airline_theme = 'catppuccin'
 let g:airline_powerline_fonts = 0 " or to use https://github.com/powerline/fonts
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -349,6 +374,17 @@ let b:ale_fixers = {'cpp': ['clangtidy']}
 "\       'directory': '/tmp/ccls/cache'
 "\   }
 "\ }
+" let g:ale_cpp_clang_options = '-std=c++17 -Wall -O2 -I<directories>'
+" let g:ale_cpp_ccls_executable = 'ccls'
+" let g:ale_cpp_clang_executable = 'clang++'
+" let g:ale_cpp_clangcheck_executable = 'clang-check'
+" let g:ale_cpp_clangcheck_options = ''
+" let g:ale_cpp_clangd_executable = 'clangd'
+" let g:ale_cpp_clangd_options = ''
+" let g:ale_cpp_clangtidy_exectable = 'clang-tidy'
+" let g:ale_cpp_clangtidy_options = '-std=c++17 -Wall -O2 -I<directory>'
+" let g:ale_cpp_clangtidy_extra_options = ''
+" let g:ale_virtualtext_cursor = 'current'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Code compiling, viewing, searching
@@ -423,10 +459,10 @@ let g:asyncrun_open = 8
 
 " Vim-context
 " :ContextEnable/ :ContextDisable
-let g:context_enabled = 0
-nnoremap <silent><nowait> <space>x :ContextPeek<CR>
-nnoremap <silent><nowait> [X :ContextDisable<CR>
-nnoremap <silent><nowait> ]X :ContextEnable<CR>
+" let g:context_enabled = 0
+" nnoremap <silent><nowait> <space>x :ContextPeek<CR>
+nnoremap <silent><nowait> [X :TSContextDisable<CR>
+nnoremap <silent><nowait> ]X :TSContextEnable<CR>
 
 " Zen Mode
 nnoremap <silent><nowait> [Z :ZenMode<CR>
@@ -435,9 +471,6 @@ nnoremap <silent><nowait> [Z :ZenMode<CR>
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_posix_standard = 1
-
-" Rainbox brackets
-let g:rainbow_active = 1
 
 " Quickfix configs
 " If you want to load the quickfix item into the previously used window.
@@ -451,7 +484,7 @@ set clipboard+=unnamedplus
 " Deoplete semshi issue
 " call deoplete#custom#option('auto_complete_delay', 100)
 
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+" let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " Map the leader key + q to toggle quick-scope's highlighting in normal/visual mode.
 " Note that you must use nmap/xmap instead of their non-recursive versions (nnoremap/xnoremap).
@@ -509,6 +542,7 @@ call wilder#set_option('renderer', wilder#renderer_mux({
 call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
       \ 'highlights': {
       \   'border': 'Normal',
+      \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
       \ },
       \ 'border': 'rounded',
       \ })))
@@ -710,6 +744,113 @@ require'marks'.setup {
 }
 EOF
 
+lua << EOF
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+vim.keymap.set("n", "[h", mark.add_file)
+vim.keymap.set("n", "[H", mark.clear_all)
+vim.keymap.set("n", "<C-h>", ui.toggle_quick_menu)
+vim.keymap.set("n", "<C-h>1", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-h>2", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-h>3", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-h>4", function() ui.nav_file(4) end)
+EOF
+
+" Clangd-Extensions Settings and Notifications
+lua << EOF
+require("clangd_extensions").setup({
+    inlay_hints = {
+        inline = vim.fn.has("nvim-0.10") == 1,
+        -- Options other than `highlight' and `priority' only work
+        -- if `inline' is disabled
+        -- Only show inlay hints for the current line
+        only_current_line = false,
+        -- Event which triggers a refresh of the inlay hints.
+        -- You can make this { "CursorMoved" } or { "CursorMoved,CursorMovedI" } but
+        -- not that this may cause  higher CPU usage.
+        -- This option is only respected when only_current_line and
+        -- autoSetHints both are true.
+        only_current_line_autocmd = { "CursorHold" },
+        -- whether to show parameter hints with the inlay hints or not
+        show_parameter_hints = true,
+        -- prefix for parameter hints
+        parameter_hints_prefix = "<- ",
+        -- prefix for all the other hints (type, chaining)
+        other_hints_prefix = "Σ ",
+        -- whether to align to the length of the longest line in the file
+        max_len_align = false,
+        -- padding from the left if max_len_align is true
+        max_len_align_padding = 1,
+        -- whether to align to the extreme right or not
+        right_align = false,
+        -- padding from the right if right_align is true
+        right_align_padding = 2,
+        -- The color of the hints
+        highlight = "Comment",
+        -- The highlight group priority for extmark
+        priority = 100,
+    },
+    ast = {
+        -- These are unicode, should be available in any font
+        role_icons = {
+            type = "🄣",
+            declaration = "🄓",
+            expression = "🄔",
+            statement = ";",
+            specifier = "🄢",
+            ["template argument"] = "🆃",
+        },
+        kind_icons = {
+            Compound = "🄲",
+            Recovery = "🅁",
+            TranslationUnit = "🅄",
+            PackExpansion = "🄿",
+            TemplateTypeParm = "🅃",
+            TemplateTemplateParm = "🅃",
+            TemplateParamObject = "🅃",
+        },
+        --[[ These require codicons (https://github.com/microsoft/vscode-codicons)
+            role_icons = {
+                type = "",
+                declaration = "",
+                expression = "",
+                specifier = "",
+                statement = "",
+                ["template argument"] = "",
+            },
+
+            kind_icons = {
+                Compound = "",
+                Recovery = "",
+                TranslationUnit = "",
+                PackExpansion = "",
+                TemplateTypeParm = "",
+                TemplateTemplateParm = "",
+                TemplateParamObject = "",
+            }, ]]
+
+        highlights = {
+            detail = "Comment",
+        },
+    },
+    memory_usage = {
+        border = "none",
+    },
+    symbol_info = {
+        border = "none",
+    },
+})
+
+vim.diagnostic.config({
+  virtual_text = false
+})
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd = [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+EOF
+
 " Helper
 fun! ERLN()
   :set number relativenumber
@@ -778,7 +919,7 @@ hi CursorLineNr guifg=#00FF32
 hi CursorLine guibg=#002232
 hi ColorColumn guibg=#005532
 " -- Prevent diminactive from using colorcolumn scheme
-let g:diminactive_use_colorcolumn = 0
+" let g:diminactive_use_colorcolumn = 0
 :call ERLN()
 
 " True Color
