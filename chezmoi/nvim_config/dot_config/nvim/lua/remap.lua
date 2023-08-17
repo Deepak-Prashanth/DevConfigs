@@ -24,3 +24,6 @@ keymap('', 'Tn', ':tabnew', opts)
 
 -- Undotree
 keymap('n', ']U', ':UndotreeToggle<CR>', opts)
+
+-- Fuzzy finder for files
+keymap('n', '<C-j>', ':Files<CR>', opts)

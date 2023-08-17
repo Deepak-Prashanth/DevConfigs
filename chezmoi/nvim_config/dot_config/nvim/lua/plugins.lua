@@ -173,4 +173,58 @@ require("lazy").setup({
 -- 'SirVer/ultisnips'
 -- 'honza/vim-snippets'
 -- 'justink/vim-sneak'
+
+-- Plug 'andymass/vim-matchup' " https://github.com/andymass/vim-matchup
+-- ^^ (Causes slow down on bigger files)
+--
+-- function! UpdateRemotePlugins(...)
+--   " Needed to refresh runtime files
+--   let &rtp=&rtp
+--   UpdateRemotePlugins
+-- endfunction
+--
+-- Disabled as not needed anymore
+-- Plug 'wellle/context.vim'   " Context while code browsing
+-- Plug 'mhinz/vim-signify'
+-- Plug 'blueyed/vim-diminactive'
+-- Plug 'luochen1990/rainbow' " https://github.com/luochen1990/rainbow
+-- Plug 'simrat39/inlay-hints.nvim'
+-- Plug 'liuchengxu/vim-clap'  " 👏 Modern performant fuzzy picker
+-- Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
+-- Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+-- Plug 'octol/vim-cpp-enhanced-highlight' " Better cpp highlighting
+-- Plug 'jsfaint/gen_tags.vim'  "gnu global(aka gtags), backup for "ccls"
+-- Plug 'morhetz/gruvbox'      " To make coc warning msgs look better
+-- Plug 'jiangmiao/auto-pairs' " Autocomplete brackets
+--
+-- -----------------
+--  TRY THESE LATER
+-- -----------------
+-- TODO: https://github.com/easymotion/vim-easymotion
+-- Plug 'easymotion/vim-easymotion'
+-- Plug 'simrat39/symbols-outline.nvim'
+-- Plug 'liuchengxu/vista.vim'
+-- https://github.com/vim-utils/vim-man
+-- https://github.com/ggandor/lightspeed.nvim
+-- https://github.com/justinmk/vim-sneak
+-- https://github.com/junegunn/vim-easy-align
+-- https://github.com/andmarti1424/sc-im
+-- https://github.com/junegunn/myvim
+-- https://github.com/amoffat/snake
+-- https://github.com/vim-ctrlspace/vim-ctrlspace
+-- https://github.com/jasonrudolph/keyboard
+-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Extra-modules-and-plugins
+-- -------------------
+-- Tried but not used
+-- -------------------
+-- Plug 'ryanoasis/vim-devicons' " Filetype glyphs for vim
+-- Plug 'gauteh/vim-cppman' " CPP Documentation
+-- Plug 'skywind3000/vim-quickui' " For Quick UI - https://github.com/skywind3000/vim-quickui
+-- https://github.com/camspiers/lens.vim
+-- Plug 'camspiers/lens.vim'
+-- --------------------------
+-- Other plugins to check out
+-- https://github.com/tweekmonster/startuptime.vim
+-- https://github.com/wakatime/vim-wakatime
+-- https://github.com/skywind3000/asynctasks.vim
 })

@@ -81,3 +81,4 @@ require("clangd_extensions").setup({
     },
 })
 
+-- TODO: Add shortcuts and set up clangd LSP
