@@ -21,6 +21,8 @@ require("lazy").setup({
 
 -- Themes
 { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+{ 'folke/tokyonight.nvim', branch = 'main' },
+-- TODO: Move to lua line
 'vim-airline/vim-airline',
 'vim-airline/vim-airline-themes',
 
@@ -165,7 +167,6 @@ require("lazy").setup({
 -- 'dense-analysis/ale'
 -- 'skywind3000/asyncrun.vim'
 -- 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
--- 'folke/tokyonight.nvim', { 'branch': 'main' }
 -- 'chentoast/marks.nvim'
 -- 'rcarriga/nvim-notify' " Notification popups
 -- 'SirVer/ultisnips'

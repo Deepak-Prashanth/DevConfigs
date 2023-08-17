@@ -36,3 +36,36 @@ vim.opt.colorcolumn = "80"
 
 -- Theme
 vim.cmd.colorscheme "catppuccin"
+-- vim.g.lightline = {colorscheme = 'catppuccin_mocha'}
+
+table.insert(vim.opt.switchbuf, "uselast")
+vim.opt.completeopt = "menu"
+-- table.remove(vim.opt.completeopt, "preview")
+
+-- System clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- Use ripgrep
+vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
+
+-- Folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldenable = false
+
+vim.opt.background = "dark"
+
+-- Add folders into this path. Comma separated
+-- Eg: src,build
+table.insert(vim.opt.path, "**")
+
+local api = vim.api
+-- Quickfix window settings
+-- Move the quickfix window to the bottom of the window layout
+-- Source: https://stackoverflow.com/a/6728687
+api.nvim_create_autocmd({"FileType"}, { pattern = {"qf"} , command = [[wincmd J]] })
+-- Open quickfix window automatically from 
+-- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
+api.nvim_create_autocmd({"QuickFixCmdPost"}, { pattern = {"qf"} , command = [[wincmd J]] })
+-- autocmd QuickFixCmdPost [^l]* nested cwindow
+-- autocmd QuickFixCmdPost    l* nested lwindow
+
