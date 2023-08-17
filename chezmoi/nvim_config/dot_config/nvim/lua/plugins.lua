@@ -62,6 +62,7 @@ require("lazy").setup({
 'voldikss/vim-floaterm',
 'tpope/vim-unimpaired',
 'unblevable/quick-scope',
+'rcarriga/nvim-notify',
 
 -- Useful tools
 'godlygeek/tabular',
