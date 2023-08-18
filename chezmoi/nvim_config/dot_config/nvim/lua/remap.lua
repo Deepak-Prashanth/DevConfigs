@@ -1,5 +1,5 @@
 local keymap = vim.keymap.set
-
+local opts = nil
 -- Short keys for grep searching
 keymap('n', '<leader>g', ':grep <C-R>=expand("<cword>")<CR>', opts)
 keymap('n', '<leader>s', ':grep <C-R>=expand("<cword>")<CR> %<CR>', opts)
@@ -10,7 +10,7 @@ keymap('n', '<leader>h', ':noh<CR>', opts)
 -- Quickfix navigation
 keymap('n', '<C-n>', ':cnext<CR>', opts)
 keymap('n', '<C-p>', ':cprevious<CR>', opts)
--- nnoremap <silent> <C-L> :ccl \| noh<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+keymap('n', '<C-L>', ':ccl \\| noh<C-R>=has(\'diff\')?\'<Bar>diffupdate\':\'\'<CR><CR><C-L>', opts)
 
 -- Quickscope toggle
 keymap('n', ']S', ':QuickScopeToggle<CR>', opts)
