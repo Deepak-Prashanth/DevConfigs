@@ -46,6 +46,8 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
+  require("clangd_extensions.inlay_hints").setup_autocmd()
+  require("clangd_extensions.inlay_hints").set_inlay_hints()
 
   vim.keymap.set("n", "<leader>d", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
