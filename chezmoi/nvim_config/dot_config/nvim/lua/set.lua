@@ -75,11 +75,11 @@ local api = vim.api
 -- Quickfix window settings
 -- Move the quickfix window to the bottom of the window layout
 -- Source: https://stackoverflow.com/a/6728687
-api.nvim_create_autocmd({"FileType"}, { pattern = {"qf"} , command = [[wincmd J]] })
--- Open quickfix window automatically from 
+api.nvim_create_autocmd({ "FileType" }, { pattern = { "qf" }, command = [[wincmd J]] })
+-- Open quickfix window automatically from
 -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
-api.nvim_create_autocmd({"QuickFixCmdPost"}, { pattern = {"[^l]*"} , command = [[cwindow]], once=true, nested = true })
-api.nvim_create_autocmd({"QuickFixCmdPost"}, { pattern = {"l*"} , command = [[lwindow]], once=true, nested = true })
+api.nvim_create_autocmd({ "QuickFixCmdPost" }, { pattern = { "[^l]*" }, command = [[cwindow]], once = true, nested = true })
+api.nvim_create_autocmd({ "QuickFixCmdPost" }, { pattern = { "l*" }, command = [[lwindow]], once = true, nested = true })
 api.nvim_command('filetype plugin indent on')
 
 -- True color
@@ -90,9 +90,9 @@ if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
 endif]], false)
 
 -- Highlights
-vim.cmd[[hi CursorLineNr guifg=#00FF32]]
-vim.cmd[[hi CursorLine guibg=#002232]]
-vim.cmd[[hi ColorColumn guibg=#005532]]
+vim.cmd [[hi CursorLineNr guifg=#00FF32]]
+vim.cmd [[hi CursorLine guibg=#002232]]
+vim.cmd [[hi ColorColumn guibg=#005532]]
 
 -- Quickscope, disable on startup
 vim.g.qs_enable = 0
