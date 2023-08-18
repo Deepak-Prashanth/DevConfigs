@@ -289,6 +289,7 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 # bindkey '^r' history-incremental-search-backward
 bindkey '^r' fzf-history-widget
+zvm_bindkey viins '^r' fzf-history-widget
 zle
 zle -R
 function zle-line-init zle-keymap-select {

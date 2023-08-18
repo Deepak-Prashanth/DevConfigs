@@ -23,8 +23,8 @@ require("lazy").setup({
 { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 { 'folke/tokyonight.nvim', branch = 'main' },
 -- TODO: Move to lua line
--- 'vim-airline/vim-airline',
--- 'vim-airline/vim-airline-themes',
+'vim-airline/vim-airline',
+'vim-airline/vim-airline-themes',
 {
   'nvim-lualine/lualine.nvim',
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
@@ -67,6 +67,12 @@ require("lazy").setup({
 'tpope/vim-unimpaired',
 'unblevable/quick-scope',
 'rcarriga/nvim-notify',
+{
+  'gelguy/wilder.nvim',
+  config = function()
+    -- config goes here
+  end,
+},
 
 -- Useful tools
 'godlygeek/tabular',

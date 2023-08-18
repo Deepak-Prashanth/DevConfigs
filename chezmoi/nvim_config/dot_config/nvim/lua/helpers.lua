@@ -55,3 +55,35 @@ command! -nargs=0 DisableRelativeLineNumbers call DRLN()
 nnoremap ]r :EnableRelativeLineNumbers<CR>
 nnoremap [r :DisableRelativeLineNumbers<CR>
 ]], false)
+
+-- TODO: Disable Coc for unsupported buffers
+-- vim.api.nvim_exec([[
+-- let s:my_coc_file_types = ['c', 'cpp', 'h', 'asm', 'hpp']
+
+-- function! s:disable_coc_for_type()
+-- 	if index(g:my_coc_file_types, &filetype) == -1
+-- 	        let b:coc_enabled = 0
+-- 	endif
+-- endfunction
+
+-- augroup CocGroup
+-- 	autocmd!
+-- 	autocmd BufNew,BufEnter * call s:disable_coc_for_type()
+-- augroup end
+-- ]], false)
+
+-- vim.api.nvim_exec([[
+-- let g:coc_filetypes_enable = [ 'c', 'cpp', 'cxx', 'h', 'hpp', 'asm']
+-- function! s:disable_coc_for_type()
+--   if index(g:coc_filetypes_enable, &filetype) == -1
+--     :silent! CocDisable
+--   else
+--     :silent! CocEnable
+--   endif
+-- endfunction
+
+-- augroup CocGroup
+--  autocmd!
+--  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_coc_for_type()
+-- augroup end
+-- ]], false)
