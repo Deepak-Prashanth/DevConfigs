@@ -20,7 +20,7 @@ keymap('n', ']S', ':QuickScopeToggle<CR>', opts)
 keymap('', '<C-g>l', ':FloatermNew --width=0.9 --height=0.9 lazygit<CR>', opts)
 
 -- Tab shortcuts
-keymap('', 'Tn', ':tabnew', opts)
+keymap('', 'Tn', ':tabnew<CR>', opts)
 
 -- Undotree
 keymap('n', ']U', ':UndotreeToggle<CR>', opts)

@@ -93,3 +93,9 @@ endif]], false)
 vim.cmd[[hi CursorLineNr guifg=#00FF32]]
 vim.cmd[[hi CursorLine guibg=#002232]]
 vim.cmd[[hi ColorColumn guibg=#005532]]
+
+-- Quickscope, disable on startup
+vim.g.qs_enable = 0
+
+-- Indent guides
+vim.g.indent_guides_enable_on_vim_startup = 1
