@@ -45,14 +45,28 @@ require("lazy").setup({
   'mrjones2014/nvim-ts-rainbow',
   'nvim-treesitter/nvim-treesitter-context',
 
+  -- IDE Formatting
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+  {
+    'mvllow/modes.nvim',
+    tag = 'v0.2.0',
+    config = function()
+      require('modes').setup()
+    end
+  },
+  'itchyny/vim-cursorword',
+  'nathanaelkane/vim-indent-guides',
+  'ntpeters/vim-better-whitespace',
+
   -- Quality of life
   'folke/which-key.nvim',
   'folke/zen-mode.nvim',
   'karb94/neoscroll.nvim',
-  'itchyny/vim-cursorword',
   'farmergreg/vim-lastplace',
-  'nathanaelkane/vim-indent-guides',
-  'ntpeters/vim-better-whitespace',
   'mbbill/undotree',
   'ThePrimeagen/harpoon',
   {
@@ -101,6 +115,8 @@ require("lazy").setup({
   -- https://gist.github.com/dinhmai74/4fc774dfd69750ce9ed706620a5082a9
 
   -- LSP related configs
+  -- Per language follow:
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua
   {
     {
       'VonHeikemen/lsp-zero.nvim',
@@ -134,9 +150,9 @@ require("lazy").setup({
 
         cmp.setup({
           mapping = {
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-            ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+            ['<leader><C-Space>'] = cmp.mapping.complete(),
+            ['<leader><C-f>'] = cmp_action.luasnip_jump_forward(),
+            ['<leader><C-b>'] = cmp_action.luasnip_jump_backward(),
           }
         })
       end
@@ -165,38 +181,36 @@ require("lazy").setup({
 
         -- (Optional) Configure lua language server for neovim
         require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
+        local clangd_config = require('plugin.clangd')
+        require('lspconfig').clangd.setup(clangd_config)
         lsp.setup()
       end
     }
   }
+  -- TODO:LSP Stuff
+  -- LSP: lspconfig & mason-lspconfig.nvim
+  -- DAP: nvim-dap & nvim-dap-ui
+  -- Linters: null-ls.nvim or nvim-lint
+  -- Formatters: null-ls.nvim or formatter.nvim
+
   -- 'editorconfig/editorconfig-vim',
   -- 'tpope/vim-dispatch',
   -- 'tpope/vim-rsi',
   -- 'scrooloose/nerdtree',
   -- 'stefandtw/quickfix-reflector.vim'
-  -- 'roxma/nvim-yarp'
-  -- 'roxma/vim-hug-neovim-rpc'
   -- 'mhinz/vim-startify' " Fancy start screen
   -- 'dense-analysis/ale'
   -- 'skywind3000/asyncrun.vim'
-  -- 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
   -- 'chentoast/marks.nvim'
-  -- 'rcarriga/nvim-notify' " Notification popups
   -- 'SirVer/ultisnips'
   -- 'honza/vim-snippets'
   -- 'justink/vim-sneak'
-
   -- Plug 'andymass/vim-matchup' " https://github.com/andymass/vim-matchup
   -- ^^ (Causes slow down on bigger files)
-  --
-  -- function! UpdateRemotePlugins(...)
-  --   " Needed to refresh runtime files
-  --   let &rtp=&rtp
-  --   UpdateRemotePlugins
-  -- endfunction
-  --
+
+  -- -------------------------------
   -- Disabled as not needed anymore
+  -- -------------------------------
   -- Plug 'wellle/context.vim'   " Context while code browsing
   -- Plug 'mhinz/vim-signify'
   -- Plug 'blueyed/vim-diminactive'
@@ -213,6 +227,9 @@ require("lazy").setup({
   -- -----------------
   --  TRY THESE LATER
   -- -----------------
+  -- TODO: https://github.com/folke/todo-comments.nvim
+  -- TODO: https://github.com/steelsojka/pears.nvim
+  -- TODO: https://github.com/machakann/vim-sandwich
   -- TODO: https://github.com/easymotion/vim-easymotion
   -- Plug 'easymotion/vim-easymotion'
   -- Plug 'simrat39/symbols-outline.nvim'

@@ -1,6 +1,7 @@
--- vim.diagnostic.config({
---   virtual_text = false
--- })
+vim.diagnostic.enable()
+vim.diagnostic.config({
+  virtual_text = false
+})
 
 -- Show line diagnostics automatically in hover window
 -- vim.o.updatetime = 250

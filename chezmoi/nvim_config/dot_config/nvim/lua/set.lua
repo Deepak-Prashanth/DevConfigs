@@ -33,7 +33,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "81"
 
 -- Theme
 vim.cmd.colorscheme "catppuccin"
@@ -78,7 +78,8 @@ local api = vim.api
 api.nvim_create_autocmd({ "FileType" }, { pattern = { "qf" }, command = [[wincmd J]] })
 -- Open quickfix window automatically from
 -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
-api.nvim_create_autocmd({ "QuickFixCmdPost" }, { pattern = { "[^l]*" }, command = [[cwindow]], once = true, nested = true })
+api.nvim_create_autocmd({ "QuickFixCmdPost" },
+  { pattern = { "[^l]*" }, command = [[cwindow]], once = true, nested = true })
 api.nvim_create_autocmd({ "QuickFixCmdPost" }, { pattern = { "l*" }, command = [[lwindow]], once = true, nested = true })
 api.nvim_command('filetype plugin indent on')
 
@@ -99,3 +100,7 @@ vim.g.qs_enable = 0
 
 -- Indent guides
 vim.g.indent_guides_enable_on_vim_startup = 1
+
+-- Treesitter context highlights
+vim.cmd [[hi TreesitterContext guibg = #331133]]
+vim.cmd [[hi TreesitterContextLineNumber guifg=#00FF32]]
