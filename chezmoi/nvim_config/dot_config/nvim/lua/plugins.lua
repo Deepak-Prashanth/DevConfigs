@@ -65,6 +65,24 @@ require("lazy").setup({
   -- Quality of life
   'folke/which-key.nvim',
   'folke/zen-mode.nvim',
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
   'karb94/neoscroll.nvim',
   'farmergreg/vim-lastplace',
   'mbbill/undotree',
@@ -150,10 +168,35 @@ require("lazy").setup({
 
         cmp.setup({
           mapping = {
-            ['<leader><C-Space>'] = cmp.mapping.complete(),
-            ['<leader><C-f>'] = cmp_action.luasnip_jump_forward(),
-            ['<leader><C-b>'] = cmp_action.luasnip_jump_backward(),
-          }
+            ['<leader>Space'] = cmp.mapping.complete(),
+            ['<leader>F'] = cmp_action.luasnip_jump_forward(),
+            ['<leader>B'] = cmp_action.luasnip_jump_backward(),
+          },
+          formatting = {
+            format = function(entry, vim_item)
+              vim_item.kind = require("lsp.ui.completion").kind({
+                text = true,
+                icon = "default",
+              })[vim_item.kind]
+
+              vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[Neovim Lua]",
+                luasnip = "[LuaSnip]",
+                buffer = "[Buffer]",
+                path = "[Path]",
+              })[entry.source.name]
+
+              return vim_item
+            end,
+          },
+          sources = {
+            { name = "nvim_lsp", max_item_count = 10 },
+            { name = "nvim_lua", max_item_count = 10 },
+            { name = "luasnip",  max_item_count = 10 },
+            { name = "buffer",   max_item_count = 10 },
+            { name = "path",     max_item_count = 10 },
+          },
         })
       end
     },
