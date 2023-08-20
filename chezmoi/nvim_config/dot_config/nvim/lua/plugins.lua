@@ -117,8 +117,7 @@ require("lazy").setup({
     'kkoomen/vim-doge',
     build = function()
       vim.cmd [[call doge#install()]]
-    end,
-    lazy = true
+    end
   },
   'preservim/nerdcommenter',
   'tpope/vim-commentary',
