@@ -123,13 +123,21 @@ require("lazy").setup({
   'tpope/vim-commentary',
 
   -- Rust
-  { 'rust-lang/rust.vim',               lazy = true,  ft = { 'rs' } },
-  { 'simrat39/rust-tools.nvim',         lazy = true,  ft = { 'rs' } },
+  { 'rust-lang/rust.vim',       lazy = true, ft = { 'rs' } },
+  { 'simrat39/rust-tools.nvim', lazy = true, ft = { 'rs' } },
 
   -- C++
-  { 't-troebst/perfanno.nvim',          lazy = true },
-  { 'dhananjaylatkar/cscope_maps.nvim', lazy = true },
-  { 'p00f/clangd_extensions.nvim',      lazy = true },
+  { 't-troebst/perfanno.nvim',  lazy = true },
+  {
+    'dhananjaylatkar/cscope_maps.nvim',
+    lazy = true,
+    ft = { 'c', 'cpp', 'h', 'hpp', 'cxx', 'hxx' }
+  },
+  {
+    'p00f/clangd_extensions.nvim',
+    lazy = true,
+    ft = { 'c', 'cpp', 'h', 'hpp', 'cxx', 'hxx' }
+  },
   {
     'neoclide/coc.nvim',
     branch = 'release',

@@ -17,6 +17,7 @@ curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/ala
 sudo tic -xe alacritty,alacritty-direct <alacritty_file>
 
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-fira-mono --cask
+brew tap homebrew/cask-fonts && brew install --cask font-iosevka-nerd-font
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-hack--cask
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-fira-code --cask
 brew tap homebrew/cask-fonts && brew install homebrew/cask-fonts/font-source-code-pro --cask

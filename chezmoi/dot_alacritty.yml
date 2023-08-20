@@ -22,8 +22,8 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
-  # TERM: xterm-256-color
+  # TERM: alacritty
+  TERM: xterm-256-color
 
 tabspace: 2
 
@@ -135,9 +135,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Iosevka Term
+    family: Iosevka Nerd Font
     # The `style` can be specified to pick a specific face.
-    style: Extralight Extended
+    style: Light
+    # style: Extralight Extended
 
   # Bold font face
   bold:
@@ -145,10 +146,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Iosevka Term
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Extralight Extended Italic
+    style: Light Italic
 
   # Italic font face
   italic:
@@ -157,10 +158,10 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-    family: Iosevka Term
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Light Extended Italic
+    style: Light Bold Italic
 
   # Bold italic font face
   bold_italic:
@@ -169,10 +170,10 @@ font:
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-    family: Iosevka Term
+    family: Iosevka Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Extended Oblique
+    style: Regular Bold Oblique
 
   # Point size
   #size: 11.0
