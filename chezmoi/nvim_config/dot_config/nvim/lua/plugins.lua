@@ -16,25 +16,22 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = "\\" -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
-
-  'tpope/vim-sensible',
-
   -- Themes
   { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
-  { 'folke/tokyonight.nvim', branch = 'main' },
+  { 'folke/tokyonight.nvim', branch = 'main',     lazy = true },
   -- TODO: Move to lua line
   'vim-airline/vim-airline',
   'vim-airline/vim-airline-themes',
   {
     'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    lazy = true
   },
 
   -- Navigation
-  'preservim/tagbar',
+  { 'preservim/tagbar',                lazy = true },
   'junegunn/fzf',
   'junegunn/fzf.vim',
-  'tpope/vim-commentary',
 
   -- Git
   'tpope/vim-fugitive',
@@ -63,6 +60,7 @@ require("lazy").setup({
   'ntpeters/vim-better-whitespace',
 
   -- Quality of life
+  'tpope/vim-sensible',
   'folke/which-key.nvim',
   'folke/zen-mode.nvim',
   {
@@ -85,8 +83,8 @@ require("lazy").setup({
   },
   'karb94/neoscroll.nvim',
   'farmergreg/vim-lastplace',
-  'mbbill/undotree',
-  'ThePrimeagen/harpoon',
+  { 'mbbill/undotree',      lazy = true },
+  { 'ThePrimeagen/harpoon', lazy = true },
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
@@ -97,8 +95,8 @@ require("lazy").setup({
     build =
     'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   },
-  'markonm/traces.vim',
-  'voldikss/vim-floaterm',
+  { 'markonm/traces.vim',    lazy = true },
+  { 'voldikss/vim-floaterm', lazy = true },
   'tpope/vim-unimpaired',
   'unblevable/quick-scope',
   'rcarriga/nvim-notify',
@@ -110,25 +108,28 @@ require("lazy").setup({
   },
 
   -- Useful tools
-  'godlygeek/tabular',
-  'AndrewRadev/linediff.vim',
+  { 'godlygeek/tabular',        lazy = true },
+  { 'AndrewRadev/linediff.vim', lazy = true },
 
   -- Documentation/Commenting
   {
     'kkoomen/vim-doge',
-    run = ':call doge#install()'
+    build = function()
+      vim.cmd [[call doge#install()]]
+    end
   },
   'preservim/nerdcommenter',
+  'tpope/vim-commentary',
 
   -- Rust
-  'rust-lang/rust.vim',
-  'simrat39/rust-tools.nvim',
+  { 'rust-lang/rust.vim',               lazy = true },
+  { 'simrat39/rust-tools.nvim',         lazy = true },
 
   -- C++
-  't-troebst/perfanno.nvim',
-  'dhananjaylatkar/cscope_maps.nvim',
-  'p00f/clangd_extensions.nvim',
-  { 'neoclide/coc.nvim',               branch = 'release' },
+  { 't-troebst/perfanno.nvim',          lazy = true },
+  { 'dhananjaylatkar/cscope_maps.nvim', lazy = true },
+  { 'p00f/clangd_extensions.nvim',      lazy = true },
+  { 'neoclide/coc.nvim',                branch = 'release' },
   -- Configure shortcuts by looking at:
   -- https://gist.github.com/dinhmai74/4fc774dfd69750ce9ed706620a5082a9
 
@@ -155,6 +156,7 @@ require("lazy").setup({
       dependencies = {
         { 'L3MON4D3/LuaSnip' },
       },
+      lazy = true,
       config = function()
         -- Here is where you configure the autocompletion settings.
         -- The arguments for .extend() have the same shape as `manage_nvim_cmp`:

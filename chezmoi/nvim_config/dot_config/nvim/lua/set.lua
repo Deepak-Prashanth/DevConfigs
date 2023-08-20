@@ -104,3 +104,6 @@ vim.g.indent_guides_enable_on_vim_startup = 1
 -- Treesitter context highlights
 vim.cmd [[hi TreesitterContext guibg = #331133]]
 vim.cmd [[hi TreesitterContextLineNumber guifg=#00FF32]]
+
+-- Enable indent guides
+vim.cmd [[IndentGuidesEnable]]
