@@ -52,7 +52,12 @@ require("lazy").setup({
     'mvllow/modes.nvim',
     tag = 'v0.2.0',
     config = function()
-      require('modes').setup()
+    local latte = require("catppuccin.palettes").get_palette "mocha"
+      require('modes').setup({
+        colors = {
+          visual = latte.mauve,
+        },
+      })
     end
   },
   'itchyny/vim-cursorword',

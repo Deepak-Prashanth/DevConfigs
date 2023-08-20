@@ -33,3 +33,5 @@ ac952548f7722f752e6c9f485d93e297|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/
 	std:cout << "asd";
 16cd3a14c9817c5cbd30208dfe4c8340|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/decltype.cpp|78|7|V|cpp
 	  std::cout << "asd";
+5bf65cd1d487d82f65a5d5e0b4810661|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/decltype.cpp|84|4|v|cpp
+	 *itr = 4;
