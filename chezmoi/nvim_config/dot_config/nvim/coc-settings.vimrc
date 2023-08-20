@@ -174,3 +174,5 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " pip3 install pynvim --upgrade
+let g:coc_status_error_sign = '✘'
+let g:coc_status_warning_sign = '▲'

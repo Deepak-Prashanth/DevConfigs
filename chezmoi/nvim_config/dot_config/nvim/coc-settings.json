@@ -2,7 +2,7 @@
   "suggest.autoTrigger": "always",
   "suggest.triggerCompletionWait": "300",
   "coc.preferences.useQuickfixForLocations": true,
-  "diagnostic.displayByAle": true,
+  "diagnostic.displayByAle": false,
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -14,6 +14,9 @@
         },
         "client": {
           "snippetSupport": true
+        },
+        "clang": {
+          "extraArgs": [ "-std=c++17 -Wall -O2" ]
         }
       }
     }

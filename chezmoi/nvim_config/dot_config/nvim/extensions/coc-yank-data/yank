@@ -29,3 +29,7 @@ db0849c59898e3cbff6f45527073ac1f|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/
 	sizeof
 ac952548f7722f752e6c9f485d93e297|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/decltype.cpp|54|16|v|cpp
 	typeof
+92f735cd1c093f27badd3c4e2da6e53f|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/decltype.cpp|78|3|V|cpp
+	std:cout << "asd";
+16cd3a14c9817c5cbd30208dfe4c8340|file:///Users/dprasannan/Desktop/Dev/cpp/cpp17/decltype.cpp|78|7|V|cpp
+	  std::cout << "asd";

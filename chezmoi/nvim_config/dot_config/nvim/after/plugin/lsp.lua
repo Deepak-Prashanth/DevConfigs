@@ -44,6 +44,13 @@ lsp.set_preferences({
   }
 })
 
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = ''
+})
+
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
   require("clangd_extensions.inlay_hints").setup_autocmd()
