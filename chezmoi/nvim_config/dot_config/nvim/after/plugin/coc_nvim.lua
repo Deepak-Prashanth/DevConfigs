@@ -8,4 +8,5 @@ end
 
 -- Add remaining plugins
 -- 'coc-json', 'coc-rust-analyzer', 'coc-cmake', 'coc-db', 'coc-sql', 'coc-pyright'
-vim.g.coc_global_extensions = {'coc-yank'}
+--[['coc-yank']]
+vim.g.coc_global_extensions = {}

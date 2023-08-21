@@ -52,7 +52,7 @@ require("lazy").setup({
     'mvllow/modes.nvim',
     tag = 'v0.2.0',
     config = function()
-    local latte = require("catppuccin.palettes").get_palette "mocha"
+      local latte = require("catppuccin.palettes").get_palette "mocha"
       require('modes').setup({
         colors = {
           visual = latte.mauve,
@@ -101,8 +101,8 @@ require("lazy").setup({
     build =
     'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   },
-  { 'markonm/traces.vim',    lazy = true },
-  { 'voldikss/vim-floaterm', lazy = true },
+  { 'markonm/traces.vim',   lazy = true },
+  { 'voldikss/vim-floaterm' },
   'tpope/vim-unimpaired',
   'unblevable/quick-scope',
   'rcarriga/nvim-notify',
@@ -111,6 +111,12 @@ require("lazy").setup({
     config = function()
       -- config goes here
     end,
+  },
+  {
+    'gbprod/yanky.nvim',
+    config = function()
+      require('yanky').setup()
+    end
   },
 
   -- Useful tools

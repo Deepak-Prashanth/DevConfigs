@@ -16,7 +16,7 @@ require("clangd_extensions").setup({
     -- prefix for parameter hints
     parameter_hints_prefix = "⦂ ",
     -- prefix for all the other hints (type, chaining)
-    other_hints_prefix = "➤ ",
+    other_hints_prefix = "➤  ",
     -- whether to align to the length of the longest line in the file
     max_len_align = false,
     -- padding from the left if max_len_align is true

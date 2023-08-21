@@ -1,0 +1,6 @@
+vim.keymap.set({"n","x"}, "<leader>yp", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "<leader>yP", "<Plug>(YankyPutBefore)")
+vim.keymap.set({"n","x"}, "<leader>ygp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({"n","x"}, "<leader>ygP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set("n", "<leader>y]", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<leader>y[", "<Plug>(YankyCycleBackward)")
