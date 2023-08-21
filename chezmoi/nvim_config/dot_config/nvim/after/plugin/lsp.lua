@@ -18,13 +18,19 @@ lsp.configure('lua-language-server', {
   }
 })
 
+-- lsp.configure('rust_analyzer', {})
+lsp.skip_server_setup({'rust_analyzer'})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_action = require('lsp-zero.cmp').action()
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['C-p'] = cmp.mapping.select_prev_item(cmp_select),
   ['C-n'] = cmp.mapping.select_next_item(cmp_select),
   ['C-y'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
+  ['<leader>F'] = cmp_action.luasnip_jump_forward(),
+  ['<leader>B'] = cmp_action.luasnip_jump_backward(),
 })
 
 cmp_mappings['<Tab>'] = nil
@@ -53,8 +59,11 @@ lsp.set_sign_icons({
 
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
-  require("clangd_extensions.inlay_hints").setup_autocmd()
-  require("clangd_extensions.inlay_hints").set_inlay_hints()
+  local allowed_filetype = { 'c', 'cpp', 'h', 'hpp', 'cxx', 'hxx', 'cuda', 'objc' }
+  if allowed_filetype[vim.bo.filetype] then
+    require("clangd_extensions.inlay_hints").setup_autocmd()
+    require("clangd_extensions.inlay_hints").set_inlay_hints()
+  end
 
   vim.keymap.set("n", "<leader>d", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -70,3 +79,13 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+local rust_tools = require('rust-tools')
+
+rust_tools.setup({
+  server = {
+    -- on_attach = function(_, bufnr)
+    --   vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, {buffer = bufnr})
+    -- end
+  }
+})

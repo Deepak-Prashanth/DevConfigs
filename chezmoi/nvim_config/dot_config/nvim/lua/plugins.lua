@@ -134,8 +134,8 @@ require("lazy").setup({
   'tpope/vim-commentary',
 
   -- Rust
-  { 'rust-lang/rust.vim',       lazy = true, ft = { 'rs' } },
-  { 'simrat39/rust-tools.nvim', lazy = true, ft = { 'rs' } },
+  { 'rust-lang/rust.vim',       ft = { 'rust', 'rs' } },
+  { 'simrat39/rust-tools.nvim', ft = { 'rust', 'rs' } },
 
   -- C++
   { 't-troebst/perfanno.nvim',  lazy = true },
@@ -190,14 +190,8 @@ require("lazy").setup({
 
         -- And you can configure cmp even more, if you want to.
         local cmp = require('cmp')
-        local cmp_action = require('lsp-zero.cmp').action()
 
         cmp.setup({
-          mapping = {
-            ['<leader>Space'] = cmp.mapping.complete(),
-            ['<leader>F'] = cmp_action.luasnip_jump_forward(),
-            ['<leader>B'] = cmp_action.luasnip_jump_backward(),
-          },
           formatting = {
             format = function(entry, vim_item)
               vim_item.kind = require("lsp.ui.completion").kind({
