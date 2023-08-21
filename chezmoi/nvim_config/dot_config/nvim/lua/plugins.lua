@@ -27,6 +27,23 @@ require("lazy").setup({
     requires = { 'nvim-tree/nvim-web-devicons', opt = true },
     lazy = true
   },
+  {
+    "akinsho/nvim-bufferline.lua",
+    config = function()
+      require("bufferline").setup({
+        options = {
+          mode = "tabs",
+          separator_style = { "", "" },
+          bruh = false,
+          tab_size = 18,
+          enforce_regular_tabs = true,
+          view = "multiwindow",
+          show_buffer_close_icons = false,
+          diagnostics = "nvim_lsp",
+        },
+      })
+    end,
+  },
 
   -- Navigation
   { 'preservim/tagbar',                lazy = true,        cmd = "Tagbar" },
@@ -101,7 +118,7 @@ require("lazy").setup({
     build =
     'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   },
-  { 'markonm/traces.vim',   lazy = true },
+  { 'markonm/traces.vim',    lazy = true },
   { 'voldikss/vim-floaterm', lazy = true, cmd = 'FloatermNew' },
   'tpope/vim-unimpaired',
   'unblevable/quick-scope',
@@ -110,6 +127,7 @@ require("lazy").setup({
     'gelguy/wilder.nvim',
     config = function()
       -- config goes here
+      require('plugin.wilder')
     end,
   },
   {
