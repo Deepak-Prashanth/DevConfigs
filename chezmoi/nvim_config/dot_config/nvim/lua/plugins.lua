@@ -29,7 +29,7 @@ require("lazy").setup({
   },
 
   -- Navigation
-  { 'preservim/tagbar',                lazy = true },
+  { 'preservim/tagbar',                lazy = true,        cmd = "Tagbar" },
   'junegunn/fzf',
   'junegunn/fzf.vim',
 
@@ -89,7 +89,7 @@ require("lazy").setup({
   },
   'karb94/neoscroll.nvim',
   'farmergreg/vim-lastplace',
-  { 'mbbill/undotree',      lazy = true },
+  { 'mbbill/undotree',      lazy = true, cmd = 'UndotreeToggle' },
   { 'ThePrimeagen/harpoon', lazy = true },
   {
     'nvim-telescope/telescope.nvim',
@@ -102,7 +102,7 @@ require("lazy").setup({
     'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   },
   { 'markonm/traces.vim',   lazy = true },
-  { 'voldikss/vim-floaterm' },
+  { 'voldikss/vim-floaterm', lazy = true, cmd = 'FloatermNew' },
   'tpope/vim-unimpaired',
   'unblevable/quick-scope',
   'rcarriga/nvim-notify',
@@ -120,8 +120,8 @@ require("lazy").setup({
   },
 
   -- Useful tools
-  { 'godlygeek/tabular',        lazy = true },
-  { 'AndrewRadev/linediff.vim', lazy = true },
+  { 'godlygeek/tabular',        lazy = true, cmd = 'Tabularize' },
+  { 'AndrewRadev/linediff.vim', lazy = true, cmd = 'Linediff' },
 
   -- Documentation/Commenting
   {
