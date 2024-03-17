@@ -81,3 +81,5 @@ rm-improved
 zoxide
 ms-jpq/sad/sad
 lua-language-server
+starship
+pastel
