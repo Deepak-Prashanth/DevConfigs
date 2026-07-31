@@ -134,6 +134,7 @@ return {
     ft = { 'c', 'cpp', 'h', 'hpp', 'cxx', 'hxx', 'python' }
   },
   { 't-troebst/perfanno.nvim',  lazy = true },
+  {'ryanpetrello/vimwhisperer'},
   {
     'dhananjaylatkar/cscope_maps.nvim',
     config = function()
