@@ -1,3 +1,8 @@
+Install zsh 
+zshvi mode
+ohmyzsh
+starship
+
 - Tools josean 7 amazing cli tools
 - zoxide `alias cd='z'`
   - `eval "$(oxide init zsh)"`
