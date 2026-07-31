@@ -83,3 +83,5 @@ ms-jpq/sad/sad
 lua-language-server
 starship
 pastel
+hyperfine
+bloaty
