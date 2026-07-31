@@ -1,0 +1,13 @@
+- Tools josean 7 amazing cli tools
+- zoxide `alias cd='z'`
+  - `eval "$(oxide init zsh)"`
+- nvim tree sitter context
+- brew install youplot
+- tux resurrect
+- vim - sindrets/diffview.nvim
+- pip3 visidata, seaborn, matplotlib
+- brew install --cask nikitabobko/tap/aerospace
+- neo vim clipboard `set clipboard^=unnamed,unnamedplus`
+- vim don't new line to end of file = `:set nofixeol` and `:set nofixendofline`
+- vim fold expressions fix
+- brew install tattoy
