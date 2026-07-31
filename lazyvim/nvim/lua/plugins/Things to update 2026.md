@@ -1,8 +1,9 @@
-Install zsh 
-zshvi mode
-ohmyzsh
-starship
-
+- Install zsh
+- zshvi mode
+- ohmyzsh
+- starship
+- tmux grouping sessions
+  - tmux-fzf, tmux-sessionizer
 - Tools josean 7 amazing cli tools
 - zoxide `alias cd='z'`
   - `eval "$(oxide init zsh)"`
