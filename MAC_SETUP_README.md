@@ -11,7 +11,7 @@ pip install --user libtmux
 # Run tmux install
 >> Prefix+I
 ```
-3. Install font for alacritty, some features outlined (here)[]
+3. Install font for alacritty, some features outlined (here)[] or Ghostty
 ```
 curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info > <alacritty_file>
 sudo tic -xe alacritty,alacritty-direct <alacritty_file>
